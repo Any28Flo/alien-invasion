@@ -1,16 +1,33 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import sys
+import pygame
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+class AlienInvasion:
+    """Overall class to manage game assets and behavior."""
+
+    def __init__(self):
+        """Initialize the game, and create game resources"""
+        pygame.init()
+        self.clock = pygame.time.Clock()
+        self.screen = pygame.display.set_mode((1280, 720))
+        pygame.display.set_caption("Alien Invasion")
+        # Set the background color.
+        self.bg_color = (230, 230, 230)
+
+    def run_game(self):
+        """Start the main loop for the game"""
+        while True:
+            # Watch for keyboard and mouse events.
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+            # Redraw the screen during each pass through the loop
+            self.screen.fill(self.bg_color)
+            # Make the most recently drawn screen visible
+            pygame.display.flip()
+            self.clock.tick(60)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Make a game instance, and run the game.
+ai = AlienInvasion()
+ai.run_game()
